@@ -2,7 +2,6 @@
 import os # Para os.system
 import random # Embaralar as cartas
 import time # Pausa entre entrega de cartas
-import sys # Para o código caso o jogador faça merda ou perca
 import msvcrt # Criar as telas de "Aperte qualquerte tecla para continuar"
 import json # Salvar as estátisticas
 
@@ -84,6 +83,30 @@ def menu():
         elif choose == 3:
             try:
                 with open("game_data.json", "r") as f:
+                    stats = json.load(f)
             except FileNotFoundError:
+                game_data= {
+                    "1": None,
+                    "2": None,
+                    "3": None
+                }
+                with open("game_data.json", "w") as f:
+                    json.dump(game_data, f, indent=4)
+                stats = game_data
+            os.system('cls')
+            
+            print("╔═══════════════════════════════════════════════╗")
+            print("║              ♣ ♦ ESTÁTISTICAS ♠ ♥             ║")
+            print("╚═══════════════════════════════════════════════╝")
+            print(" ")
+            for num_slot in ["1", "2", "3"]:
+                if stats[num_slot] is None:
+                    print("╔═══════════════════════════════════════════════╗")
+                    print(f"║   Slot {num_slot:<39}║")
+                    print("║   - SLOT VAZIO -                              ║")
+                    print("╚═══════════════════════════════════════════════╝")
+                    print("")
+            print("")
+            msvcrt.getch()
 
-
+menu() # Para debugging
