@@ -7,11 +7,8 @@
 
 
   <p>
-
     <img src="https://img.shields.io/badge/Python-3.14-3776AB?style=for-the-badge&logo=python&logoColor=white" alt="Python"/>
-
     <img src="https://img.shields.io/badge/Status-Em%20desenvolvimento-yellow?style=for-the-badge" alt="Status"/>
-
   </p>
 
 
@@ -38,27 +35,27 @@ O projeto está sendo desenvolvido de forma colaborativa e por etapas. Abaixo es
 
 ### ✅ O que já foi implementado:
 
-* 🖥️ **Menu Principal Interativo**: Tela inicial desenhada com Box Drawings oferecendo opções de jogo, regras, estatísticas, configurações e créditos.
+* **Menu Principal Interativo**: Tela inicial desenhada com Box Drawings oferecendo opções de jogo, regras, estatísticas, configurações e créditos.
 
-* ⌨️ **Navegação Inteligente**: Validação de inputs no terminal com loops de captura segura contra entradas inválidas.
+* **Navegação Inteligente**: Validação de inputs no terminal com loops de captura segura contra entradas inválidas.
 
-* 📜 **Tela de Regras Completa**: Um painel explicativo detalhando o objetivo, valores das cartas, fluxo e pagamentos, com retorno suave ao menu inicial usando a tecla de atalho `msvcrt.getch()`.
+* **Tela de Regras Completa**: Um painel explicativo detalhando o objetivo, valores das cartas, fluxo e pagamentos, com retorno suave ao menu inicial usando a tecla de atalho `msvcrt.getch()`.
 
-* 💾 **Gerenciador de Saves (Inicialização)**: Bloco `try/except` robusto capaz de ler as informações do arquivo `game_data.json` ou criar um novo arquivo contendo 3 slots de salvamento zerados se o arquivo não existir.
+* **Gerenciador de Saves (Inicialização)**: Bloco `try/except` robusto capaz de ler as informações do arquivo `game_data.json` ou criar um novo arquivo contendo 3 slots de salvamento zerados se o arquivo não existir.
 
 
 
 ### ⏳ O que será desenvolvido nas próximas etapas (Backlog):
 
-* 🧩 **Lógica de Cálculo Dinâmico**: Implementação da função que calcula o valor da mão, tratando os Áses de forma inteligente (valendo 1 ou 11) para evitar estouros.
+* **Lógica de Cálculo Dinâmico**: Implementação da função que calcula o valor da mão, tratando os Áses de forma inteligente (valendo 1 ou 11) para evitar estouros.
 
-* 📊 **Painel de Estatísticas**: Loop que percorre os slots do JSON e exibe o saldo e recordes de cada jogador de forma perfeitamente alinhada.
+* **Painel de Estatísticas**: Loop que percorre os slots do JSON e exibe o saldo e recordes de cada jogador de forma perfeitamente alinhada.
 
-* 🃏 **Lógica de Rodadas (Jogo Central)**: A mesa de jogo em si, incluindo a distribuição, decisões do jogador (Hit, Stand, Double Down) e a inteligência artificial do Dealer.
+* **Lógica de Rodadas (Jogo Central)**: A mesa de jogo em si, incluindo a distribuição, decisões do jogador (Hit, Stand, Double Down) e a inteligência artificial do Dealer.
 
-* 🎴 **Cartas Grandes (10 linhas de altura)**: Renderização das cartas lado a lado no terminal.
+* **Cartas Grandes (10 linhas de altura)**: Renderização das cartas lado a lado no terminal.
 
-* 🔄 **Animação Flip 3D**: Efeito visual de virada das cartas utilizando frames em caracteres especiais e intervalos de tempo.
+* **Animação Flip 3D**: Efeito visual de virada das cartas utilizando frames em caracteres especiais e intervalos de tempo.
 
 
 
