@@ -110,7 +110,7 @@ def menu():
                     print("╚═══════════════════════════════════════════════╝")
                     print("")
                 else:
-                    slot = stats[num_slot]  # ← essa linha ainda falta!
+                    slot = stats[num_slot] 
                     total = slot["vitorias"] + slot["derrotas"] + slot["empates"]
                     pct_v = (slot["vitorias"] / total * 100) if total > 0 else 0
                     pct_d = (slot["derrotas"] / total * 100) if total > 0 else 0
