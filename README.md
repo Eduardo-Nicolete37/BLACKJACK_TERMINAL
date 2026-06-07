@@ -16,33 +16,21 @@ O projeto está sendo desenvolvido de forma colaborativa e por etapas. Abaixo es
 ### ✅ O que já foi implementado:
 
 * **Menu Principal Interativo**: Tela inicial desenhada com Box Drawings oferecendo opções de jogo, regras, estatísticas, configurações e créditos.
-
 * **Navegação Inteligente**: Validação de inputs no terminal com loops de captura segura contra entradas inválidas de tipo (letras/símbolos) e lógica de opções.
-
 * **Tela de Regras Completa**: Um painel explicativo detalhando o objetivo, valores das cartas, fluxo e pagamentos, com retorno suave ao menu inicial usando a tecla de atalho `msvcrt.getch()`.
-
-* **Gerenciador de Saves (Inicialização)**: Bloco `try/except` robusto capaz de ler as informações do arquivo `game_data.json` ou criar um novo arquivo contendo 3 slots de salvamento zerados se o arquivo não existir.
-
+* **Gerenciador de Saves**: Bloco `try/except` robusto capaz de ler as informações do arquivo `game_data.json` na subpasta `data/` ou criar um novo arquivo contendo 3 slots de salvamento zerados se o arquivo não existir.
 * **Painel de Estatísticas**: Loop que percorre os slots do JSON e exibe partidas, vitórias, derrotas, empates, blackjacks e saldo de cada jogador — com porcentagens calculadas dinamicamente e alinhamento de bordas corrigido via função `pad()` que desconta a largura real de caracteres especiais do terminal.
-
-* **Painel de Configurações**: Tela de configurações persistentes carregadas do arquivo `settings.json`. Já conta com a exibição de status dinâmica e a lógica de inversão (Toggle ON/OFF) para o **Modo Rápido**.
+* **Painel de Configurações**: Tela de configurações persistentes carregadas do arquivo `settings.json` na subpasta `data/`. Conta com exibição dinâmica e possibilita alterar o **Modo Rápido** (toggles ON/OFF) e o **Teto de Buy-In** (com validação completa de tipo e limite positivo), salvando os novos dados no disco e atualizando a tela de forma fluida.
+* **Menu de Créditos**: Tela de créditos personalizada contendo as informações do desenvolvedor (nome, GitHub, linguagem Python 3.14 e versão do jogo).
+* **Encerramento Seguro**: Opção de sair integrada de forma limpa usando `sys.exit()`.
 
 ### ⏳ O que será desenvolvido nas próximas etapas (Backlog):
 
 * **Finalização das Configurações**:
 
-  - Salvar as configurações modificadas de volta no arquivo `settings.json`.
-
-  - Implementar a rotina para alteração do **Teto de Buy-In**.
-
-  - Criar um loop interno para que a tela de configurações atualize visualmente logo após sofrer alterações.
-
 * **Lógica de Cálculo Dinâmico**: Implementação da função que calcula o valor da mão, tratando os Áses de forma inteligente (valendo 1 ou 11) para evitar estouros.
-
 * **Lógica de Rodadas (Jogo Central)**: A mesa de jogo em si, incluindo a distribuição, decisões do jogador (Hit, Stand, Double Down) e a inteligência artificial do Dealer.
-
 * **Cartas Grandes (10 linhas de altura)**: Renderização das cartas lado a lado no terminal.
-
 * **Animação Flip 3D**: Efeito visual de virada das cartas utilizando frames em caracteres especiais e intervalos de tempo.
 
 ---
