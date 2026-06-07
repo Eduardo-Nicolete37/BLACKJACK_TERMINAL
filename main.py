@@ -195,6 +195,7 @@ def menu():
                 elif change_setting == 3:
                     break
         elif choose == 5:
+            os.system('cls')
             print("╔══════════════════════════════════════╗")
             print("║           ♣ ♦ CRÉDITOS ♠ ♥           ║")
             print("╠══════════════════════════════════════╣")
