@@ -4,6 +4,10 @@ import random # Embaralar as cartas
 # import time # Pausa entre entrega de cartas, comentado até agora para não dar erro
 import msvcrt # Criar as telas de "Aperte qualquerte tecla para continuar"
 import json # Salvar as estátisticas
+import sys # Parar o código caso necessário
+
+os.makedirs("data", exist_ok=True)
+
 def pad(linha, largura=49):
     chars_duplos = sum(1 for c in linha if c in "║╔╗╚╝╠╣╦╩╬═─│┼♣♦♠♥—")
     return linha + " " * (largura - len(linha) - chars_duplos) + "║"
@@ -85,7 +89,7 @@ def menu():
             msvcrt.getch()
         elif choose == 3:
             try:
-                with open("game_data.json", "r") as f:
+                with open("data/game_data.json", "r") as f:
                     stats = json.load(f)
             except FileNotFoundError:
                 game_data= {
@@ -93,7 +97,7 @@ def menu():
                     "2": None,
                     "3": None
                 }
-                with open("game_data.json", "w") as f:
+                with open("data/game_data.json", "w") as f:
                     json.dump(game_data, f, indent=4)
                 stats = game_data
             os.system('cls')
@@ -131,46 +135,87 @@ def menu():
             print("")
             msvcrt.getch()
         elif choose == 4:
-            try:
-                '''''
-                Se o arquivo settings não existe, ele cria um automáticamente
-                '''''
-                with open("settings.json", "r") as f:
-                    settings = json.load(f)
-            except FileNotFoundError:
-                settings= {
-                    "modo_rapido": False,
-                    "teto_buyin": 10000,
-                }
-                with open("settings.json", "w") as f:
-                    json.dump(settings, f, indent=4)
-            status_rapido = "[ ON ]" if settings["modo_rapido"] else "[ OFF ]"
-            os.system('cls')
-            print("╔═══════════════════════════════════════════════╗")
-            print("║              ♣ ♦ Configurações ♠ ♥            ║")
-            print("╠═══════════════════════════════════════════════╣")
-            print(pad(f"║   1. Modo Rápido:  {status_rapido}"))
-            print(pad(f"║   2. Teto Buy-In:  R$ {settings['teto_buyin']}"))
-            print(pad("║   3. Voltar"))
-            print("║                                               ║")
-            print("╚═══════════════════════════════════════════════╝")
-            print("")
-            while True: 
+            while True:
                 try:
-                    '''
-                    Verifica se o input é válido
-                    Proxima coisa à fazer eu do futuro:
-                    Adicionar a mudança de teto, e pensar em algum ester egg
-                    '''
-                    change_setting = int(input("Digite a configuração que deseja alterar: "))
-                    if change_setting in [1, 2, 3]:
-                        break
-                    else:
-                        print("Opção inválida! Escolha entre 1, 2 ou 3.")
-                except ValueError:
-                    print("Opção inválida! Tente novamente")
-            if change_setting == 1:
-                settings["modo_rapido"] = not settings["modo_rapido"] # Inverte o valor da chave
+                    '''''
+                    Se o arquivo settings não existe, ele cria um automáticamente,
+                    o mesmo para a pasta data
+                    '''''
+                    with open("data/settings.json", "r") as f:
+                        settings = json.load(f)
+                except FileNotFoundError:
+                    settings= {
+                        "modo_rapido": False,
+                        "teto_buyin": 10000,
+                    }
+                with open("data/settings.json", "w") as f:
+                    json.dump(settings, f, indent=4)
+                status_rapido = "[ ON ]" if settings["modo_rapido"] else "[ OFF ]"
+                os.system('cls')
+                print("╔═══════════════════════════════════════════════╗")
+                print("║              ♣ ♦ Configurações ♠ ♥            ║")
+                print("╠═══════════════════════════════════════════════╣")
+                print(pad(f"║   1. Modo Rápido:  {status_rapido}"))
+                print(pad(f"║   2. Teto Buy-In:  R$ {settings['teto_buyin']}"))
+                print(pad("║   3. Voltar"))
+                print("║                                               ║")
+                print("╚═══════════════════════════════════════════════╝")
+                print("")
+                while True: 
+                    try:
+                        '''
+                        Verifica se o input é válido
+                        Proxima coisa à fazer eu do futuro:
+                        Adicionar a mudança de teto, e pensar em algum ester egg
+                        '''
+                        change_setting = int(input("Digite a configuração que deseja alterar: "))
+                        if change_setting in [1, 2, 3]:
+                            break
+                        else:
+                            print("Opção inválida! Escolha entre 1, 2 ou 3.")
+                    except ValueError:
+                        print("Opção inválida! Tente novamente")
+                if change_setting == 1:
+                    settings["modo_rapido"] = not settings["modo_rapido"] # Inverte o valor da chave
+                    with open("data/settings.json", "w") as f:
+                            json.dump(settings, f, indent=4)
+                elif change_setting == 2:
+                    try:
+                        novo_teto = int(input("Digite o novo teto para novos saves: "))
+                        if novo_teto >= 0:
+                            settings["teto_buyin"] = novo_teto
+                        else:
+                            print("O teto deve ser um valor maior do que 0!")
+                            msvcrt.getch()
+                    except ValueError:
+                        print("Entrada inválida! Digite um valor válido")
+                        msvcrt.getch()
+                    with open("data/settings.json", "w") as f:
+                        json.dump(settings, f, indent=4)
+                elif change_setting == 3:
+                    break
+        elif choose == 5:
+            print("╔══════════════════════════════════════╗")
+            print("║           ♣ ♦ CRÉDITOS ♠ ♥           ║")
+            print("╠══════════════════════════════════════╣")
+            print("║   Desenvolvido por:                  ║")
+            print("║     Eduardo Nicolete                 ║")
+            print("╠══════════════════════════════════════╣")
+            print("║   GitHub:                            ║")
+            print("║     github.com/Eduardo-Nicolete37    ║")
+            print("╠══════════════════════════════════════╣")
+            print("║   Informações do Sistema:            ║")
+            print("║     Linguagem: Python 3.14           ║")
+            print("║     Versão do Jogo: v0.8.0 (Beta)    ║")
+            print("╚══════════════════════════════════════╝")
+            print("")
+            print("════════════════════════════════════════")
+            print(" [Pressione qualquer tecla para voltar] ")
+            msvcrt.getch()
+        elif choose == 6:
+            os.system('cls')
+            print("Obrigado por jogar! Até a próxima.")
+            sys.exit()
 
 
             
