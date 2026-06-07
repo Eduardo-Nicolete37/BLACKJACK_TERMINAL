@@ -1,7 +1,7 @@
 # Bibliotecas que vou usar
 import os # Para os.system
 import random # Embaralar as cartas
-import time # Pausa entre entrega de cartas
+# import time # Pausa entre entrega de cartas, comentado até agora para não dar erro
 import msvcrt # Criar as telas de "Aperte qualquerte tecla para continuar"
 import json # Salvar as estátisticas
 def pad(linha, largura=49):
@@ -130,5 +130,49 @@ def menu():
                     print("")
             print("")
             msvcrt.getch()
+        elif choose == 4:
+            try:
+                '''''
+                Se o arquivo settings não existe, ele cria um automáticamente
+                '''''
+                with open("settings.json", "r") as f:
+                    settings = json.load(f)
+            except FileNotFoundError:
+                settings= {
+                    "modo_rapido": False,
+                    "teto_buyin": 10000,
+                }
+                with open("settings.json", "w") as f:
+                    json.dump(settings, f, indent=4)
+            status_rapido = "[ ON ]" if settings["modo_rapido"] else "[ OFF ]"
+            os.system('cls')
+            print("╔═══════════════════════════════════════════════╗")
+            print("║              ♣ ♦ Configurações ♠ ♥            ║")
+            print("╠═══════════════════════════════════════════════╣")
+            print(pad(f"║   1. Modo Rápido:  {status_rapido}"))
+            print(pad(f"║   2. Teto Buy-In:  R$ {settings['teto_buyin']}"))
+            print(pad("║   3. Voltar"))
+            print("║                                               ║")
+            print("╚═══════════════════════════════════════════════╝")
+            print("")
+            while True: 
+                try:
+                    '''
+                    Verifica se o input é válido
+                    Proxima coisa à fazer eu do futuro:
+                    Adicionar a mudança de teto, e pensar em algum ester egg
+                    '''
+                    change_setting = int(input("Digite a configuração que deseja alterar: "))
+                    if change_setting in [1, 2, 3]:
+                        break
+                    else:
+                        print("Opção inválida! Escolha entre 1, 2 ou 3.")
+                except ValueError:
+                    print("Opção inválida! Tente novamente")
+            if change_setting == 1:
+                settings["modo_rapido"] = not settings["modo_rapido"] # Inverte o valor da chave
+
+
+            
 
 menu() # Para debugging
