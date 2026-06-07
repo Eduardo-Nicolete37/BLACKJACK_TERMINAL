@@ -1,14 +1,13 @@
-# Bibliotecas que vou usar
-import os # Para os.system
-import random # Embaralar as cartas
-# import time # Pausa entre entrega de cartas, comentado até agora para não dar erro
-import msvcrt # Criar as telas de "Aperte qualquerte tecla para continuar"
-import json # Salvar as estátisticas
-import sys # Parar o código caso necessário
+import os
+import random
+# import time comentado até agora para não dar erro
+import msvcrt 
+import json 
+import sys
 
 os.makedirs("data", exist_ok=True)
 
-def pad(linha, largura=49):
+def pad(linha, largura=49): # Criado para corrigir possíveis erros de box drawing, contando caractéres duplos
     chars_duplos = sum(1 for c in linha if c in "║╔╗╚╝╠╣╦╩╬═─│┼♣♦♠♥—")
     return linha + " " * (largura - len(linha) - chars_duplos) + "║"
 
@@ -26,10 +25,10 @@ naipe = {
     "d": "♦"
 }
 
-random.shuffle(baralho) # Embaralhamento das cartas
+random.shuffle(baralho)
 
 def jogo_central(baralho):
-    print # print como placeholder por agora
+    pass
 
 def menu():
     while True:
@@ -137,10 +136,10 @@ def menu():
         elif choose == 4:
             while True:
                 try:
-                    '''''
+                    """
                     Se o arquivo settings não existe, ele cria um automáticamente,
                     o mesmo para a pasta data
-                    '''''
+                    """
                     with open("data/settings.json", "r") as f:
                         settings = json.load(f)
                 except FileNotFoundError:
@@ -163,11 +162,12 @@ def menu():
                 print("")
                 while True: 
                     try:
-                        '''
+                        """
                         Verifica se o input é válido
-                        Proxima coisa à fazer eu do futuro:
-                        Adicionar a mudança de teto, e pensar em algum ester egg
-                        '''
+                        TODO:
+                        Pensar em algum ester egg, e começar a pensar na animação
+                        e NÃO esquecer de descomentar o time
+                        """
                         change_setting = int(input("Digite a configuração que deseja alterar: "))
                         if change_setting in [1, 2, 3]:
                             break
@@ -176,7 +176,7 @@ def menu():
                     except ValueError:
                         print("Opção inválida! Tente novamente")
                 if change_setting == 1:
-                    settings["modo_rapido"] = not settings["modo_rapido"] # Inverte o valor da chave
+                    settings["modo_rapido"] = not settings["modo_rapido"] # Para trocar a polaridade do booleano
                     with open("data/settings.json", "w") as f:
                             json.dump(settings, f, indent=4)
                 elif change_setting == 2:
