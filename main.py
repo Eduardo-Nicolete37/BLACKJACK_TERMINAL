@@ -27,8 +27,39 @@ naipe = {
 
 random.shuffle(baralho)
 
-def jogo_central(baralho):
+def game_start():
+    os.system('cls')
+    print("╔══════════════════════════════════════╗")
+    print("║             ♣ ♦ JOGAR ♠ ♥            ║")
+    print("╠══════════════════════════════════════╣")
+    print("║                                      ║")
+    print("║   Selecione uma opção:               ║")
+    print("║     1. Novo Jogo                     ║")
+    print("║     2. Carregar jogo                 ║")
+    print("║     3. Voltar ao menu                ║")
+    print("╚══════════════════════════════════════╝")
+    print("")
+    try:
+        option_game = int(input("Digite a opção desejada: "))
+        if option_game in [1,2,3]:
+            if option_game == 1:
+                new_game()
+            elif option_game == 2:
+                load_game()
+            elif option_game == 3:
+                pass
+            else:
+                print("Opção inválida! Escolha entre 1, 2 ou 3.")
+                msvcrt.getch()
+    except ValueError:
+        print("Escolha uma alternativa válida")
+        msvcrt.getch()
+
+def new_game(baralho):
     pass
+def load_game(baralho):
+    os.system('cls')
+             
 
 def menu():
     while True:
@@ -54,7 +85,7 @@ def menu():
             except ValueError:
                 print("Valor Inválido! Tente novamente...")
         if choose == 1:
-            jogo_central(baralho)
+            game_start()
         elif choose == 2:
             os.system('cls')
             print("╔═════════════════════════════════════════════════════════╗")
