@@ -28,7 +28,7 @@ naipe = {
 random.shuffle(baralho)
 
 def game_start():
-    os.system('cls')
+    os.system('cls' if os.name == 'nt' else 'clear')
     print("╔══════════════════════════════════════╗")
     print("║             ♣ ♦ JOGAR ♠ ♥            ║")
     print("╠══════════════════════════════════════╣")
@@ -43,11 +43,11 @@ def game_start():
         option_game = int(input("Digite a opção desejada: "))
         if option_game in [1,2,3]:
             if option_game == 1:
-                new_game()
+                new_game(baralho)
             elif option_game == 2:
-                load_game()
+                load_game(baralho)
             elif option_game == 3:
-                pass
+                menu()
             else:
                 print("Opção inválida! Escolha entre 1, 2 ou 3.")
                 msvcrt.getch()
@@ -58,12 +58,38 @@ def game_start():
 def new_game(baralho):
     pass
 def load_game(baralho):
-    os.system('cls')
-             
+    os.system('cls' if os.name == 'nt' else 'clear')
+    try:
+        with open("data/game_data.json", "r") as f:
+            stats = json.load(f)
+            if stats == {"1": None,"2": None,"3": None}:
+                print("╔═══════════════════════════════════════════════╗")
+                print("║               Nenhum jogo salvo!              ║")
+                print("║               Crie um novo save!              ║")
+                print("╚═══════════════════════════════════════════════╝")
+                print("═════════════════════════════════════════════════")
+                print("     [Pressione qualquer tecla para voltar]      ")
+                msvcrt.getch()
+            else:
+                pass
+    except FileNotFoundError:
+        game_data= {
+            "1": None,
+            "2": None,
+            "3": None
+            }
+        print("╔═══════════════════════════════════════════════╗")
+        print("║               Nenhum jogo salvo!              ║")
+        print("║               Crie um novo save!              ║")
+        print("╚═══════════════════════════════════════════════╝")
+        print("═════════════════════════════════════════════════")
+        print("     [Pressione qualquer tecla para voltar]      ")
+        msvcrt.getch()
+        
 
 def menu():
     while True:
-        os.system('cls')
+        os.system('cls' if os.name == 'nt' else 'clear')
         print("╔══════════════════════════════════════╗")
         print("║           ♣ ♦ BLACKJACK ♠ ♥          ║")
         print("╠══════════════════════════════════════╣")
@@ -87,7 +113,7 @@ def menu():
         if choose == 1:
             game_start()
         elif choose == 2:
-            os.system('cls')
+            os.system('cls' if os.name == 'nt' else 'clear')
             print("╔═════════════════════════════════════════════════════════╗")
             print("║                      ♣ ♦ REGRAS ♠ ♥                     ║")
             print("╠═════════════════════════════════════════════════════════╣")
@@ -130,7 +156,7 @@ def menu():
                 with open("data/game_data.json", "w") as f:
                     json.dump(game_data, f, indent=4)
                 stats = game_data
-            os.system('cls')
+            os.system('cls' if os.name == 'nt' else 'clear')
             
             print("╔═══════════════════════════════════════════════╗")
             print("║              ♣ ♦ ESTÁTISTICAS ♠ ♥             ║")
@@ -181,7 +207,7 @@ def menu():
                 with open("data/settings.json", "w") as f:
                     json.dump(settings, f, indent=4)
                 status_rapido = "[ ON ]" if settings["modo_rapido"] else "[ OFF ]"
-                os.system('cls')
+                os.system('cls' if os.name == 'nt' else 'clear')
                 print("╔═══════════════════════════════════════════════╗")
                 print("║              ♣ ♦ Configurações ♠ ♥            ║")
                 print("╠═══════════════════════════════════════════════╣")
@@ -226,7 +252,7 @@ def menu():
                 elif change_setting == 3:
                     break
         elif choose == 5:
-            os.system('cls')
+            os.system('cls' if os.name == 'nt' else 'clear')
             print("╔══════════════════════════════════════╗")
             print("║           ♣ ♦ CRÉDITOS ♠ ♥           ║")
             print("╠══════════════════════════════════════╣")
@@ -245,7 +271,7 @@ def menu():
             print(" [Pressione qualquer tecla para voltar] ")
             msvcrt.getch()
         elif choose == 6:
-            os.system('cls')
+            os.system('cls' if os.name == 'nt' else 'clear')
             print("Obrigado por jogar! Até a próxima.")
             sys.exit()
 
