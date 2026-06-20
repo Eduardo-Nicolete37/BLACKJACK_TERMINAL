@@ -47,16 +47,79 @@ def game_start():
             elif option_game == 2:
                 load_game(baralho)
             elif option_game == 3:
-                menu()
-            else:
-                print("Opção inválida! Escolha entre 1, 2 ou 3.")
-                msvcrt.getch()
+                return
+        else:
+            print("Opção inválida! Escolha entre 1, 2 ou 3.")
+            msvcrt.getch()
     except ValueError:
         print("Escolha uma alternativa válida")
         msvcrt.getch()
 
 def new_game(baralho):
-    pass
+    os.system('cls' if os.name == 'nt' else 'clear')
+    try:
+        with open("data/game_data.json", "r") as f:
+            stats = json.load(f)
+    except FileNotFoundError:
+        game_data= {
+            '1': None,
+            '2': None,
+            '3': None}
+        with open("data/game_data.json", "w") as f:
+            json.dump(game_data, f, indent=4)
+        stats = game_data
+    for num_slot in ["1", "2", "3"]:
+        if stats[num_slot] is None:
+            print("╔═══════════════════════════════════════════════╗")
+            print(f"║   Slot {num_slot:<39}║")
+            print("║   - SLOT VAZIO -                              ║")
+            print("╚═══════════════════════════════════════════════╝")
+            print("")
+        else:
+            slot = stats[num_slot] 
+            total = slot["vitorias"] + slot["derrotas"] + slot["empates"]
+            print("╔═══════════════════════════════════════════════╗")
+            print(pad(f"║  Slot {num_slot} - {slot['nome']}"))
+            print("╠═══════════════════════════════════════════════╣")
+            print("║                                               ║")
+            print(pad(f"║   Partidas jogadas:  {total}"))
+            print("║                                               ║")
+            print("╚═══════════════════════════════════════════════╝")
+            print("")
+            print("═════════════════════════════════════════════════")
+    while True:
+        try:
+            choose = int(input("Digite a opção desejada (1-3): "))
+        except ValueError:
+            print("Valor Inválido! Tente novamente...")
+        if choose == 1:
+            if stats['1'] is not None:
+                confirmation = input("Este slot já possui um jogo salvo. Deseja sobrescrever? (S/N): ")
+                if confirmation == 'Y' or 'y':
+                    pass
+                else:
+                    return
+            else:
+                pass
+        elif choose == 2:
+            if stats['2'] is not None:
+                confirmation = input("Este slot já possui um jogo salvo. Deseja sobrescrever? (S/N): ")
+                if confirmation == 'Y' or 'y':
+                    pass
+                else:
+                    return
+            else:
+                pass
+        elif choose == 3:
+            if stats['3'] is not None:
+                confirmation = input("Este slot já possui um jogo salvo. Deseja sobrescrever? (S/N): ")
+                if confirmation == 'Y' or 'y':
+                    pass
+                else:
+                    return
+            else:
+                pass
+            
 def load_game(baralho):
     os.system('cls' if os.name == 'nt' else 'clear')
     try:
@@ -71,13 +134,46 @@ def load_game(baralho):
                 print("     [Pressione qualquer tecla para voltar]      ")
                 msvcrt.getch()
             else:
-                pass
+                for num_slot in ["1", "2", "3"]:
+                    if stats[num_slot] is None:
+                        print("╔═══════════════════════════════════════════════╗")
+                        print(f"║   Slot {num_slot:<39}║")
+                        print("║   - SLOT VAZIO -                              ║")
+                        print("╚═══════════════════════════════════════════════╝")
+                        print("")
+                    else:
+                        slot = stats[num_slot] 
+                        total = slot["vitorias"] + slot["derrotas"] + slot["empates"]
+                        print("╔═══════════════════════════════════════════════╗")
+                        print(pad(f"║  Slot {num_slot} - {slot['nome']}"))
+                        print("╠═══════════════════════════════════════════════╣")
+                        print("║                                               ║")
+                        print(pad(f"║   Partidas jogadas:  {total}"))
+                        print("║                                               ║")
+                        print("╚═══════════════════════════════════════════════╝")
+                        print("")
+                        print("═════════════════════════════════════════════════")
+                while True:
+                    try:
+                        choose = int(input("Digite a opção desejada (1-3): "))
+                        break
+                    except ValueError:
+                        print("Valor Inválido! Tente novamente...")
+                    if choose == 1 and stats['1'] is not None:
+                        pass
+                    if choose == 2 and stats['2'] is not None:
+                        pass
+                    if choose == 3 and stats['3'] is not None:
+                        pass
+                        
     except FileNotFoundError:
         game_data= {
             "1": None,
             "2": None,
-            "3": None
-            }
+            "3": None}
+        with open("data/game_data.json", "w") as f:
+            json.dump(game_data, f, indent=4)
+        stats = game_data
         print("╔═══════════════════════════════════════════════╗")
         print("║               Nenhum jogo salvo!              ║")
         print("║               Crie um novo save!              ║")
@@ -264,7 +360,7 @@ def menu():
             print("╠══════════════════════════════════════╣")
             print("║   Informações do Sistema:            ║")
             print("║     Linguagem: Python 3.14           ║")
-            print("║     Versão do Jogo: v0.8.0 (Beta)    ║")
+            print("║     Versão do Jogo: v0.8 (Beta)      ║")
             print("╚══════════════════════════════════════╝")
             print("")
             print("════════════════════════════════════════")
