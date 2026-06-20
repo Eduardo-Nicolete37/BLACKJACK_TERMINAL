@@ -90,33 +90,58 @@ def new_game(baralho):
     while True:
         try:
             choose = int(input("Digite a opção desejada (1-3): "))
+            break
         except ValueError:
             print("Valor Inválido! Tente novamente...")
         if choose == 1:
             if stats['1'] is not None:
-                confirmation = input("Este slot já possui um jogo salvo. Deseja sobrescrever? (S/N): ")
-                if confirmation == 'Y' or 'y':
-                    pass
-                else:
-                    return
+                while True:
+                    try:
+                        confirmation = input("Este slot já possui um jogo salvo. Deseja sobrescrever? (S/N): ")
+                        if confirmation.lower() == 's':
+                            break
+                        elif confirmation.lower() == 'n':
+                            return
+                        else:
+                            print("Opção Inválida! Tente novamente")
+                            msvcrt.getch()
+                            break
+                    except ValueError:
+                        print("Valor Inválido! Tente novamente.")
             else:
                 pass
         elif choose == 2:
             if stats['2'] is not None:
-                confirmation = input("Este slot já possui um jogo salvo. Deseja sobrescrever? (S/N): ")
-                if confirmation == 'Y' or 'y':
-                    pass
-                else:
-                    return
+                while True:
+                    try:
+                        confirmation = input("Este slot já possui um jogo salvo. Deseja sobrescrever? (S/N): ")
+                        if confirmation.lower() == 's':
+                            break
+                        elif confirmation.lower() == 'n':
+                            return
+                        else:
+                            print("Opção Inválida! Tente novamente")
+                            msvcrt.getch()
+                            break
+                    except ValueError:
+                        print("Valor Inválido! Tente novamente.")
             else:
-                pass
+                pass # TODO: Todos esses pass são as funções que rodam o código do jogo mesmo
         elif choose == 3:
             if stats['3'] is not None:
-                confirmation = input("Este slot já possui um jogo salvo. Deseja sobrescrever? (S/N): ")
-                if confirmation == 'Y' or 'y':
-                    pass
-                else:
-                    return
+                while True:
+                    try:
+                        confirmation = input("Este slot já possui um jogo salvo. Deseja sobrescrever? (S/N): ")
+                        if confirmation.lower() == 's':
+                            break
+                        elif confirmation.lower() == 'n':
+                            return
+                        else:
+                            print("Opção Inválida! Tente novamente")
+                            msvcrt.getch()
+                            break
+                    except ValueError:
+                        print("Valor Inválido! Tente novamente.")
             else:
                 pass
             
@@ -159,12 +184,42 @@ def load_game(baralho):
                         break
                     except ValueError:
                         print("Valor Inválido! Tente novamente...")
-                    if choose == 1 and stats['1'] is not None:
+                if choose == 1:
+                    if stats['1'] is not None:
                         pass
-                    if choose == 2 and stats['2'] is not None:
+                    else:
+                        print("╔═══════════════════════════════════════════════╗")
+                        print("║               Nenhum jogo salvo!              ║")
+                        print("║               Crie um novo save!              ║")
+                        print("╚═══════════════════════════════════════════════╝")
+                        print("═════════════════════════════════════════════════")
+                        print("     [Pressione qualquer tecla para voltar]      ")
+                        msvcrt.getch()
+                elif choose == 2:
+                    if stats['2'] is not None:
                         pass
-                    if choose == 3 and stats['3'] is not None:
-                        pass
+                    else:
+                        print("╔═══════════════════════════════════════════════╗")
+                        print("║               Nenhum jogo salvo!              ║")
+                        print("║               Crie um novo save!              ║")
+                        print("╚═══════════════════════════════════════════════╝")
+                        print("═════════════════════════════════════════════════")
+                        print("     [Pressione qualquer tecla para voltar]      ")
+                        msvcrt.getch()
+                            
+                elif choose == 3:
+                    if stats['3'] is not None:
+                        print("teste")
+                        msvcrt.getch()
+                    else:
+                        print("╔═══════════════════════════════════════════════╗")
+                        print("║               Nenhum jogo salvo!              ║")
+                        print("║               Crie um novo save!              ║")
+                        print("╚═══════════════════════════════════════════════╝")
+                        print("═════════════════════════════════════════════════")
+                        print("     [Pressione qualquer tecla para voltar]      ")
+                        msvcrt.getch()
+                            
                         
     except FileNotFoundError:
         game_data= {
@@ -360,7 +415,7 @@ def menu():
             print("╠══════════════════════════════════════╣")
             print("║   Informações do Sistema:            ║")
             print("║     Linguagem: Python 3.14           ║")
-            print("║     Versão do Jogo: v0.8 (Beta)      ║")
+            print("║     Versão do Jogo: v0.8.1 (Beta)    ║")
             print("╚══════════════════════════════════════╝")
             print("")
             print("════════════════════════════════════════")
