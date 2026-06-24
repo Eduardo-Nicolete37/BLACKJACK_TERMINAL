@@ -115,7 +115,7 @@ A tela de configurações carrega e salva o arquivo `settings.json` a cada inter
 | v0.7 | 07/06/2026 | `f11098fa` `c282e4b` `6491be1` `b9e8be1` | Finalização das funções 4, 5 e 6 (estatísticas, configurações, créditos), correções e documentação |
 | v0.8 | 16/06/2026 | `3c4552a` | Início da lógica do jogo principal |
 | v0.8.1 | 20/06/2026 | `7886e57` `6d7898d` `5f7895d` | Início da lógica de carregamento de saves, configuração do load_game, atualização do README |
-| v0.9 | 23/06/2026 | — | Correção do `break` incorreto nas confirmações de sobrescrita de slot; sistema de menus, saves, estatísticas e configurações considerado estável |
+| v0.9 | 23/06/2026 | `9ff7cdb` `5e8511d` | Correção do `break` incorreto nas confirmações de sobrescrita de slot; sistema de menus, saves, estatísticas e configurações considerado estável |
 
 ---
 
