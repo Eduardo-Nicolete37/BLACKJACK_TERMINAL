@@ -448,7 +448,7 @@ def menu():
             print("╠══════════════════════════════════════╣")
             print("║   Informações do Sistema:            ║")
             print("║     Linguagem: Python 3.14           ║")
-            print("║     Versão do Jogo: v0.8.1 (Beta)    ║")
+            print("║     Versão do Jogo: v0.9 (Beta)      ║")
             print("╚══════════════════════════════════════╝")
             print("")
             print("════════════════════════════════════════")
