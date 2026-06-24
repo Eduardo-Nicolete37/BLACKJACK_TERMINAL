@@ -2,6 +2,7 @@
   <h1>🃏 BlackJack Terminal</h1>
   <p>
     <img src="https://img.shields.io/badge/Python-3.14-3776AB?style=for-the-badge&logo=python&logoColor=white" alt="Python"/>
+    <img src="https://img.shields.io/badge/Vers%C3%A3o-v0.9-blueviolet?style=for-the-badge" alt="Versão"/>
     <img src="https://img.shields.io/badge/Status-Em%20desenvolvimento-yellow?style=for-the-badge" alt="Status"/>
     <img src="https://img.shields.io/badge/Plataforma-Windows-0078D4?style=for-the-badge&logo=windows&logoColor=white" alt="Windows"/>
   </p>
@@ -90,14 +91,14 @@ A tela de configurações carrega e salva o arquivo `settings.json` a cada inter
 
 ## 4. Backlog
 
-| # | Funcionalidade | Descrição |
-|---|---|---|
-| 1 | Cadastro de jogador | Tela para inserir nome e buy-in inicial ao criar um novo save |
-| 2 | Cálculo dinâmico da mão | Função que trata o Ás valendo 1 ou 11 para evitar estouro |
-| 3 | Lógica de rodadas | Distribuição de cartas, decisões do jogador e IA do Dealer (compra até 17) |
-| 4 | Renderização de cartas | ASCII art de cartas (~10 linhas de altura) exibidas lado a lado |
-| 5 | Animação de flip 3D | Frames em caracteres especiais com `time.sleep()` simulando virada de carta |
-| 6 | Integração do módulo `time` | Descomenter e integrar delays nas animações |
+| # | Funcionalidade | Status | Descrição |
+|---|---|---|---|
+| 1 | Cadastro de jogador | ✅ Concluído | Tela para inserir nome e buy-in inicial ao criar um novo save |
+| 2 | Cálculo dinâmico da mão | 🔄 Pendente | Função que trata o Ás valendo 1 ou 11 para evitar estouro |
+| 3 | Lógica de rodadas | 🔄 Pendente | Distribuição de cartas, decisões do jogador (Hit, Stand, Double) e IA do Dealer (compra até 17) |
+| 4 | Renderização de cartas | 🔄 Pendente | ASCII art de cartas (~10 linhas de altura) exibidas lado a lado |
+| 5 | Animação de flip 3D | 🔄 Pendente | Frames em caracteres especiais com `time.sleep()` simulando virada de carta |
+| 6 | Integração do módulo `time` | 🔄 Pendente | Descomentar e integrar delays nas animações |
 
 ---
 
@@ -114,6 +115,7 @@ A tela de configurações carrega e salva o arquivo `settings.json` a cada inter
 | v0.7 | 07/06/2026 | `f11098fa` `c282e4b` `6491be1` `b9e8be1` | Finalização das funções 4, 5 e 6 (estatísticas, configurações, créditos), correções e documentação |
 | v0.8 | 16/06/2026 | `3c4552a` | Início da lógica do jogo principal |
 | v0.8.1 | 20/06/2026 | `7886e57` `6d7898d` `5f7895d` | Início da lógica de carregamento de saves, configuração do load_game, atualização do README |
+| v0.9 | 23/06/2026 | — | Correção do `break` incorreto nas confirmações de sobrescrita de slot; sistema de menus, saves, estatísticas e configurações considerado estável |
 
 ---
 
