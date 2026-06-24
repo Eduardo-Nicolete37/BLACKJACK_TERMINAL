@@ -26,6 +26,38 @@ naipe = {
 }
 
 random.shuffle(baralho)
+def game_main(baralho, stats, slot_escolhido, criar_novo=False):
+    os.system('cls' if os.name == 'nt' else 'clear')
+    if criar_novo:
+        namep = input("Digite seu nickname: ")
+        try:
+            with open("data/settings.json", "r") as f:
+                settings = json.load(f)
+        except FileNotFoundError:
+            
+            settings = {"teto_buyin": 10000}
+            
+        teto_max = settings["teto_buyin"]
+        
+        while True:
+            try:
+                buy_in = int(input(f"Digite o valor do seu Buy-In (Máximo R$ {teto_max}): "))
+                
+                
+                if 0 < buy_in <= teto_max:
+                    break  
+                else:
+                    print(f"Valor inválido! O valor deve ser maior que 0 e no máximo R$ {teto_max}.")
+            except ValueError:
+                print("Entrada inválida! Digite apenas números inteiros.")
+        stats[slot_escolhido] = {"nome": namep,
+        "vitorias": 0,
+        "derrotas": 0,
+        "empates": 0,
+        "blackjacks": 0,
+        "saldo": buy_in}
+    with open("data/game_data.json", "w") as f:
+        json.dump(stats, f, indent=4)
 
 def game_start():
     os.system('cls' if os.name == 'nt' else 'clear')
@@ -93,57 +125,60 @@ def new_game(baralho):
             break
         except ValueError:
             print("Valor Inválido! Tente novamente...")
-        if choose == 1:
-            if stats['1'] is not None:
-                while True:
-                    try:
-                        confirmation = input("Este slot já possui um jogo salvo. Deseja sobrescrever? (S/N): ")
-                        if confirmation.lower() == 's':
-                            break
-                        elif confirmation.lower() == 'n':
-                            return
-                        else:
-                            print("Opção Inválida! Tente novamente")
-                            msvcrt.getch()
-                            break
-                    except ValueError:
-                        print("Valor Inválido! Tente novamente.")
-            else:
-                pass
-        elif choose == 2:
-            if stats['2'] is not None:
-                while True:
-                    try:
-                        confirmation = input("Este slot já possui um jogo salvo. Deseja sobrescrever? (S/N): ")
-                        if confirmation.lower() == 's':
-                            break
-                        elif confirmation.lower() == 'n':
-                            return
-                        else:
-                            print("Opção Inválida! Tente novamente")
-                            msvcrt.getch()
-                            break
-                    except ValueError:
-                        print("Valor Inválido! Tente novamente.")
-            else:
-                pass # TODO: Todos esses pass são as funções que rodam o código do jogo mesmo
-        elif choose == 3:
-            if stats['3'] is not None:
-                while True:
-                    try:
-                        confirmation = input("Este slot já possui um jogo salvo. Deseja sobrescrever? (S/N): ")
-                        if confirmation.lower() == 's':
-                            break
-                        elif confirmation.lower() == 'n':
-                            return
-                        else:
-                            print("Opção Inválida! Tente novamente")
-                            msvcrt.getch()
-                            break
-                    except ValueError:
-                        print("Valor Inválido! Tente novamente.")
-            else:
-                pass
+    if choose == 1:
+        if stats['1'] is not None:
+            while True:
+                try:
+                    confirmation = input("Este slot já possui um jogo salvo. Deseja sobrescrever? (S/N): ")
+                    if confirmation.lower() == 's':
+                        game_main(baralho, stats, '1', criar_novo=True)
+                        return 
+                    elif confirmation.lower() == 'n':
+                        return
+                    else:
+                        print("Opção Inválida! Tente novamente")
+                        msvcrt.getch()
+                        continue
+                except ValueError:
+                    print("Valor Inválido! Tente novamente.")
+        else:
+            game_main(baralho, stats, '1', criar_novo=True)
+    elif choose == 2:
+        if stats['2'] is not None:
+            while True:
+                try:
+                    confirmation = input("Este slot já possui um jogo salvo. Deseja sobrescrever? (S/N): ")
+                    if confirmation.lower() == 's':
+                        game_main(baralho, stats, '2', criar_novo=True)
+                        return 
+                    elif confirmation.lower() == 'n':
+                        return
+                    else:
+                        print("Opção Inválida! Tente novamente")
+                        msvcrt.getch()
+                        continue
+                except ValueError:
+                    print("Valor Inválido! Tente novamente.")
+        else:
+            game_main(baralho, stats, '2', criar_novo=True)
+    elif choose == 3:
+        if stats['3'] is not None:
+            while True:
+                try:
+                    confirmation = input("Este slot já possui um jogo salvo. Deseja sobrescrever? (S/N): ")
+                    if confirmation.lower() == 's':
+                        game_main(baralho, stats, '3', criar_novo=True)
+                        return 
+                    elif confirmation.lower() == 'n':
+                        return
+                    else:
+                        print("Opção Inválida! Tente novamente")
+                        msvcrt.getch()
+                        continue
+                except ValueError:
+                    print("Valor Inválido! Tente novamente.")
+        else:
+            game_main(baralho, stats, '3', criar_novo=True)
             
 def load_game(baralho):
     os.system('cls' if os.name == 'nt' else 'clear')
@@ -186,7 +221,7 @@ def load_game(baralho):
                         print("Valor Inválido! Tente novamente...")
                 if choose == 1:
                     if stats['1'] is not None:
-                        pass
+                        game_main(baralho, stats, '1')
                     else:
                         print("╔═══════════════════════════════════════════════╗")
                         print("║               Nenhum jogo salvo!              ║")
@@ -197,7 +232,7 @@ def load_game(baralho):
                         msvcrt.getch()
                 elif choose == 2:
                     if stats['2'] is not None:
-                        pass
+                        game_main(baralho, stats, '2')
                     else:
                         print("╔═══════════════════════════════════════════════╗")
                         print("║               Nenhum jogo salvo!              ║")
@@ -209,8 +244,7 @@ def load_game(baralho):
                             
                 elif choose == 3:
                     if stats['3'] is not None:
-                        print("teste")
-                        msvcrt.getch()
+                        game_main(baralho, stats, '3')
                     else:
                         print("╔═══════════════════════════════════════════════╗")
                         print("║               Nenhum jogo salvo!              ║")
@@ -220,7 +254,6 @@ def load_game(baralho):
                         print("     [Pressione qualquer tecla para voltar]      ")
                         msvcrt.getch()
                             
-                        
     except FileNotFoundError:
         game_data= {
             "1": None,
