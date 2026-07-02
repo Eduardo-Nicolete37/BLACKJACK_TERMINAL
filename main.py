@@ -24,8 +24,19 @@ naipe = {
     "s": "♠",
     "d": "♦"
 }
+def embaralhar_baralho(baralho):
+    baralho.clear()
+    baralho.extend(["2h", "3h", "4h", "5h", "6h", "7h", "8h", "9h", "Th", "Jh", "Qh", "Kh", "Ah", "2c", "3c", "4c", "5c", "6c", "7c", "8c", "9c", "Tc", "Jc", "Qc", "Kc", "Ac", "2d", "3d", "4d", "5d", "6d", "7d", "8d", "9d", "Td", "Jd", "Qd", "Kd", "Ad", "2s", "3s", "4s", "5s", "6s", "7s", "8s", "9s", "Ts", "Js", "Qs", "Ks", "As"])
+    random.shuffle(baralho)
+    return baralho
+def comprar_carta(baralho):
+    if len(baralho) == 0:
+        embaralhar_baralho(baralho)
+    else:
+        pass
+    return baralho.pop()
 
-random.shuffle(baralho)
+
 def game_main(baralho, stats, slot_escolhido, criar_novo=False):
     os.system('cls' if os.name == 'nt' else 'clear')
     if criar_novo:
@@ -71,21 +82,22 @@ def game_start():
     print("║     3. Voltar ao menu                ║")
     print("╚══════════════════════════════════════╝")
     print("")
-    try:
-        option_game = int(input("Digite a opção desejada: "))
-        if option_game in [1,2,3]:
-            if option_game == 1:
-                new_game(baralho)
-            elif option_game == 2:
-                load_game(baralho)
-            elif option_game == 3:
-                return
-        else:
-            print("Opção inválida! Escolha entre 1, 2 ou 3.")
+    while True:
+        try:
+            option_game = int(input("Digite a opção desejada: "))
+            if option_game in [1,2,3]:
+                if option_game == 1:
+                    new_game(baralho)
+                elif option_game == 2:
+                    load_game(baralho)
+                elif option_game == 3:
+                    return
+            else:
+                print("Opção inválida! Escolha entre 1, 2 ou 3.")
+                msvcrt.getch()
+        except ValueError:
+            print("Escolha uma alternativa válida")
             msvcrt.getch()
-    except ValueError:
-        print("Escolha uma alternativa válida")
-        msvcrt.getch()
 
 def new_game(baralho):
     os.system('cls' if os.name == 'nt' else 'clear')
@@ -253,6 +265,8 @@ def load_game(baralho):
                         print("═════════════════════════════════════════════════")
                         print("     [Pressione qualquer tecla para voltar]      ")
                         msvcrt.getch()
+                else:
+                    print("Opção inválida! Escolha entre 1, 2 e 3.")
                             
     except FileNotFoundError:
         game_data= {
@@ -423,7 +437,7 @@ def menu():
                 elif change_setting == 2:
                     try:
                         novo_teto = int(input("Digite o novo teto para novos saves: "))
-                        if novo_teto >= 0:
+                        if novo_teto > 0:
                             settings["teto_buyin"] = novo_teto
                         else:
                             print("O teto deve ser um valor maior do que 0!")
