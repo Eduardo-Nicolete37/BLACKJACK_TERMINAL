@@ -7,6 +7,21 @@ import sys
 
 os.makedirs("data", exist_ok=True)
 
+def anim_cards():
+    pass
+def iniciar_rodada(baralho):
+    if len(baralho) <= 13:
+        embaralhar_baralho(baralho)
+    cartas_play = []
+    cartas_deale = []
+    cartas_play.append(comprar_carta(baralho))
+    cartas_play.append(comprar_carta(baralho))
+    
+    cartas_deale.append(comprar_carta(baralho))
+    cartas_deale.append(comprar_carta(baralho))
+    return cartas_deale, cartas_play
+
+        
 def pad(linha, largura=49): # Criado para corrigir possíveis erros de box drawing, contando caractéres duplos
     chars_duplos = sum(1 for c in linha if c in "║╔╗╚╝╠╣╦╩╬═─│┼♣♦♠♥—")
     return linha + " " * (largura - len(linha) - chars_duplos) + "║"
