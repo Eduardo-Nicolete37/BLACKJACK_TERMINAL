@@ -2,7 +2,7 @@
   <h1>🃏 BlackJack Terminal</h1>
   <p>
     <img src="https://img.shields.io/badge/Python-3.14-3776AB?style=for-the-badge&logo=python&logoColor=white" alt="Python"/>
-    <img src="https://img.shields.io/badge/Vers%C3%A3o-v0.9-blueviolet?style=for-the-badge" alt="Versão"/>
+    <img src="https://img.shields.io/badge/Vers%C3%A3o-v0.9.1-blueviolet?style=for-the-badge" alt="Versão"/>
     <img src="https://img.shields.io/badge/Status-Em%20desenvolvimento-yellow?style=for-the-badge" alt="Status"/>
     <img src="https://img.shields.io/badge/Plataforma-Windows-0078D4?style=for-the-badge&logo=windows&logoColor=white" alt="Windows"/>
   </p>
@@ -87,6 +87,15 @@ A tela de configurações carrega e salva o arquivo `settings.json` a cada inter
 - **Créditos**: informações do desenvolvedor, link GitHub e versão do jogo.
 - **Saída**: encerramento limpo via `sys.exit()`.
 
+### 3.6 Motor do Jogo (Em desenvolvimento)
+
+As funções utilitárias da lógica central da partida foram implementadas:
+
+- **`embaralhar_baralho(baralho)`**: Reconstrói o baralho completo com as 52 cartas e o reembaralha in-place via `baralho.clear()` + `baralho.extend()` + `random.shuffle()`. Dessa forma, a variável global `baralho` continua sendo o mesmo objeto na memória, sem necessidade de reatribuição.
+- **`comprar_carta(baralho)`**: Verifica se o baralho está vazio antes de retirar uma carta. Se estiver, chama `embaralhar_baralho()` automaticamente. Retorna a carta removida via `baralho.pop()`.
+- **`iniciar_rodada(baralho)`**: Verifica se o baralho tem 13 ou menos cartas e reembaralha se necessário. Distribui 2 cartas para o jogador e 2 para o dealer chamando `comprar_carta()`, e retorna as duas mãos como listas.
+- **`anim_cards()`**: Placeholder reservado para a futura animação de virada de carta.
+
 ---
 
 ## 4. Backlog
@@ -94,11 +103,12 @@ A tela de configurações carrega e salva o arquivo `settings.json` a cada inter
 | # | Funcionalidade | Status | Descrição |
 |---|---|---|---|
 | 1 | Cadastro de jogador | ✅ Concluído | Tela para inserir nome e buy-in inicial ao criar um novo save |
-| 2 | Cálculo dinâmico da mão | 🔄 Pendente | Função que trata o Ás valendo 1 ou 11 para evitar estouro |
-| 3 | Lógica de rodadas | 🔄 Pendente | Distribuição de cartas, decisões do jogador (Hit, Stand, Double) e IA do Dealer (compra até 17) |
-| 4 | Renderização de cartas | 🔄 Pendente | ASCII art de cartas (~10 linhas de altura) exibidas lado a lado |
-| 5 | Animação de flip 3D | 🔄 Pendente | Frames em caracteres especiais com `time.sleep()` simulando virada de carta |
-| 6 | Integração do módulo `time` | 🔄 Pendente | Descomentar e integrar delays nas animações |
+| 2 | Funções do motor do jogo | ✅ Concluído | `embaralhar_baralho`, `comprar_carta` e `iniciar_rodada` implementadas |
+| 3 | Cálculo dinâmico da mão | 🔄 Pendente | Função `calcular_pontuacao` que trata o Ás valendo 1 ou 11 para evitar estouro |
+| 4 | Loop de rodada completo | 🔄 Pendente | Turno do jogador (Hit, Stand, Double) e IA do Dealer (compra até 17) |
+| 5 | Renderização de cartas | 🔄 Pendente | ASCII art de cartas (~10 linhas de altura) exibidas lado a lado |
+| 6 | Animação de flip 3D | 🔄 Pendente | Frames em caracteres especiais com `time.sleep()` simulando virada de carta |
+| 7 | Integração do módulo `time` | 🔄 Pendente | Descomentar e integrar delays nas animações |
 
 ---
 
@@ -116,6 +126,7 @@ A tela de configurações carrega e salva o arquivo `settings.json` a cada inter
 | v0.8 | 16/06/2026 | `3c4552a` | Início da lógica do jogo principal |
 | v0.8.1 | 20/06/2026 | `7886e57` `6d7898d` `5f7895d` | Início da lógica de carregamento de saves, configuração do load_game, atualização do README |
 | v0.9 | 23/06/2026 | `9ff7cdb` `5e8511d` | Correção do `break` incorreto nas confirmações de sobrescrita de slot; sistema de menus, saves, estatísticas e configurações considerado estável |
+| v0.9.1 | 21/07/2026 | — | Implementação das funções utilitárias do motor do jogo: `embaralhar_baralho`, `comprar_carta` e `iniciar_rodada`; placeholder `anim_cards` adicionado |
 
 ---
 
