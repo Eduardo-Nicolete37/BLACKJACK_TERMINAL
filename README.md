@@ -126,7 +126,7 @@ As funções utilitárias da lógica central da partida foram implementadas:
 | v0.8 | 16/06/2026 | `3c4552a` | Início da lógica do jogo principal |
 | v0.8.1 | 20/06/2026 | `7886e57` `6d7898d` `5f7895d` | Início da lógica de carregamento de saves, configuração do load_game, atualização do README |
 | v0.9 | 23/06/2026 | `9ff7cdb` `5e8511d` | Correção do `break` incorreto nas confirmações de sobrescrita de slot; sistema de menus, saves, estatísticas e configurações considerado estável |
-| v0.9.1 | 21/07/2026 | — | Implementação das funções utilitárias do motor do jogo: `embaralhar_baralho`, `comprar_carta` e `iniciar_rodada`; placeholder `anim_cards` adicionado |
+| v0.9.1 | 21/07/2026 | `8d51301` | Implementação das funções utilitárias do motor do jogo: `embaralhar_baralho`, `comprar_carta` e `iniciar_rodada`; placeholder `anim_cards` adicionado |
 
 ---
 
