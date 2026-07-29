@@ -1,9 +1,11 @@
+import json
+import msvcrt
 import os
 import random
-# import time comentado até agora para não dar erro
-import msvcrt 
-import json 
 import sys
+
+# import time comentado até agora para não dar erro
+
 
 os.makedirs("data", exist_ok=True)
 
@@ -96,7 +98,6 @@ def game_start():
     print("║     2. Carregar jogo                 ║")
     print("║     3. Voltar ao menu                ║")
     print("╚══════════════════════════════════════╝")
-    print("")
     while True:
         try:
             option_game = int(input("Digite a opção desejada: "))
@@ -133,7 +134,6 @@ def new_game(baralho):
             print(f"║   Slot {num_slot:<39}║")
             print("║   - SLOT VAZIO -                              ║")
             print("╚═══════════════════════════════════════════════╝")
-            print("")
         else:
             slot = stats[num_slot] 
             total = slot["vitorias"] + slot["derrotas"] + slot["empates"]
@@ -144,7 +144,6 @@ def new_game(baralho):
             print(pad(f"║   Partidas jogadas:  {total}"))
             print("║                                               ║")
             print("╚═══════════════════════════════════════════════╝")
-            print("")
             print("═════════════════════════════════════════════════")
     while True:
         try:
@@ -227,7 +226,6 @@ def load_game(baralho):
                         print(f"║   Slot {num_slot:<39}║")
                         print("║   - SLOT VAZIO -                              ║")
                         print("╚═══════════════════════════════════════════════╝")
-                        print("")
                     else:
                         slot = stats[num_slot] 
                         total = slot["vitorias"] + slot["derrotas"] + slot["empates"]
@@ -238,7 +236,6 @@ def load_game(baralho):
                         print(pad(f"║   Partidas jogadas:  {total}"))
                         print("║                                               ║")
                         print("╚═══════════════════════════════════════════════╝")
-                        print("")
                         print("═════════════════════════════════════════════════")
                 while True:
                     try:
@@ -316,7 +313,6 @@ def menu():
         print("║     6. Sair                          ║")
         print("║                                      ║")
         print("╚══════════════════════════════════════╝")
-        print("")
         while True:
             try:
                 choose = int(input("Digite a opção desejada (1-6): "))
@@ -354,7 +350,6 @@ def menu():
             print("║         Aperte qualquer botão para sair da tela         ║")
             print("║                                                         ║")
             print("╚═════════════════════════════════════════════════════════╝")
-            print("")
             msvcrt.getch()
         elif choose == 3:
             try:
@@ -381,7 +376,6 @@ def menu():
                     print(f"║   Slot {num_slot:<39}║")
                     print("║   - SLOT VAZIO -                              ║")
                     print("╚═══════════════════════════════════════════════╝")
-                    print("")
                 else:
                     slot = stats[num_slot] 
                     total = slot["vitorias"] + slot["derrotas"] + slot["empates"]
@@ -400,8 +394,6 @@ def menu():
                     print(pad(f"║   Saldo:             R$ {slot['saldo']}"))
                     print("║                                               ║")
                     print("╚═══════════════════════════════════════════════╝")
-                    print("")
-            print("")
             msvcrt.getch()
         elif choose == 4:
             while True:
@@ -429,7 +421,6 @@ def menu():
                 print(pad("║   3. Voltar"))
                 print("║                                               ║")
                 print("╚═══════════════════════════════════════════════╝")
-                print("")
                 while True: 
                     try:
                         """
@@ -479,7 +470,6 @@ def menu():
             print("║     Linguagem: Python 3.14           ║")
             print("║     Versão do Jogo: v0.9 (Beta)      ║")
             print("╚══════════════════════════════════════╝")
-            print("")
             print("════════════════════════════════════════")
             print(" [Pressione qualquer tecla para voltar] ")
             msvcrt.getch()
